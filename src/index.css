@@ -1,4 +1,4 @@
-body {
+/* body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
@@ -23,4 +23,8 @@ code {
   background-size: 300px;
   background-repeat: no-repeat;
   margin: 0 auto 0 auto;
-}
+} */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
