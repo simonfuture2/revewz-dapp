@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 
 import { LABELS } from "../../constants";
 import { AppBar } from "../AppBar";
+import MainHeader from "../Header";
 
 const { Header, Content } = Layout;
 
@@ -20,6 +21,7 @@ export const AppLayout = React.memo((props: any) => {
           </Link>
           <AppBar />
         </Header>
+        <MainHeader></MainHeader>
         <Content style={{ padding: "0 50px" }}>{props.children}</Content>
       </Layout>
     </div>

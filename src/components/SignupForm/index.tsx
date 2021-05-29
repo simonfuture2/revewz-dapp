@@ -11,12 +11,12 @@ const formData = [
   { label: "Last Name", required: true },
   { label: "phone", required: true },
 ];
-export const FeaturesSection = (props: {}) => {
+
+export const SignupForm = (props: {}) => {
   return (
     <>
-      <div className="container py-12 bg-white">
-        <div className="mt-10"></div>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 my-40">
+      <div className="container   bg-white  ">
+        <div className=" p-20">
           <div className="lg:text-center">
             <h2 className="text-base text-indigo-600 font-semibold tracking-wide uppercase">
               create your account
@@ -24,7 +24,7 @@ export const FeaturesSection = (props: {}) => {
             <p className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
               easy and quick signup process
             </p>
-            <div className="shadow-xl px-5 py-5 bg-indigo-600 rounded-lg max-w-xl max-h-xl">
+            <div className="shadow-xl px-5 py-5 bg-indigo-600 rounded-lg max-w-xl max-h-xl ">
               <form>
                 <section className=" flex-row px-8  py-2  ">
                   <label className="pr-14 pl-0 text-xl">First Name</label>
@@ -51,7 +51,7 @@ export const FeaturesSection = (props: {}) => {
                   <label className="pr-5 pl-0 text-xl ">Phone Number</label>
                   <input
                     type="text"
-                    className="rounded  text-xl shadow-inner  text-indigo-900"
+                    className="rounded max-h-5 text-xl shadow-inner  text-indigo-900"
                   />
                 </section>
               </form>

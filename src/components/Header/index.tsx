@@ -80,7 +80,7 @@ function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function Header() {
+export default function MainHeader() {
   return (
     <div className="  w-screen">
       <Popover className=" relative bg-white">
