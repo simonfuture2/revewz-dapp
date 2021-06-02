@@ -8,3 +8,7 @@
 #root::before {
   content: unset;
 }
+
+#root {
+  background: #fff;
+}

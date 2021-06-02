@@ -26,8 +26,8 @@ export const SignupForm = (props: {}) => {
   const handleSubmit = () => {};
   return (
     <>
-      <div className="container  content-evenly bg-white  ">
-        <div className=" p-10">
+      <div className="container p-20 content-evenly bg-white  ">
+        <div className=" p-0">
           <div className="flex-col align-top place-items-stretch">
             <h2 className="text-base text-indigo-600 font-semibold tracking-wide uppercase">
               create your account

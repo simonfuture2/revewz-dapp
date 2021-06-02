@@ -13,9 +13,16 @@ module.exports = {
       },
       colors: {
         gray: colors.coolGray,
-        blue: colors.lightBlue,
+        blue: {
+          light: "#a2d5f2",
+          default: "#07689f",
+          secondary: '#40a8c4'
+        },
         red: colors.rose,
-        pink: colors.fuchsia,
+        yellow: {
+          light:
+            '#ffc93c'
+        }
       },
       fontFamily: {
         sans: ['Graphik', 'sans-serif'],
