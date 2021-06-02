@@ -3,18 +3,14 @@ import React from "react";
 import { Popover, Transition } from "@headlessui/react";
 import {
   BookmarkAltIcon,
-  CalendarIcon,
   ChartBarIcon,
-  CursorClickIcon,
-  MenuIcon,
   PhoneIcon,
   PlayIcon,
-  RefreshIcon,
-  ShieldCheckIcon,
   SupportIcon,
-  ViewGridIcon,
   XIcon,
 } from "@heroicons/react/outline";
+import revewz_cycle from "./../../assets/revewz_cycle.svg";
+import logo from "./../../assets/logo.png";
 import { ChevronDownIcon } from "@heroicons/react/solid";
 
 const solutions = [
@@ -62,14 +58,10 @@ export default function MainHeader() {
         {({ open }) => (
           <>
             <div className="max-w-7xl mx-auto px-4 sm:px-6 ">
-              <div className="flex justify-between items-center  py-6 md:justify-start md:space-x-10">
+              <div className="flex justify-between items-center  py-1 md:justify-start md:space-x-10">
                 <div className="flex justify-start lg:w-0 lg:flex-1">
                   <a href="#">
-                    <img
-                      className="h-8 w-auto sm:h-10"
-                      src="./src/assets/logo.png"
-                      alt=""
-                    />
+                    <img className="h-8 w-auto md:h-20" src={logo} alt="" />
                   </a>
                 </div>
 
@@ -344,7 +336,7 @@ export default function MainHeader() {
                     <div>
                       <a
                         href="#"
-                        className="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700"
+                        className=" aanimate-ping w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700"
                       >
                         Sign up
                       </a>
