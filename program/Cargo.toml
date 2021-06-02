@@ -1,8 +1,8 @@
 [package]
-name = "bpf-program-template"
-version = "0.1.0"
-edition = "2018"
-license = "WTFPL"
+name = "revewz review system program"
+version = "0.0.1"
+edition = "2021"
+authurs = "Revewz Team - All rights reserved info@revewz.io"
 publish = false
 
 [dependencies]

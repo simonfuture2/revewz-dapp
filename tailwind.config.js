@@ -4,7 +4,7 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
-
+      transitionTimingFunction: {},
       screens: {
         sm: '480px',
         md: '768px',

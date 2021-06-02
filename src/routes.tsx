@@ -9,31 +9,31 @@ import { AppLayout } from "./components/Layout";
 import { FaucetView, HomeView } from "./views";
 import { ReviewSearchBox } from "./components/ReviewSearchbox";
 import { SignupForm } from "./components/SignupForm";
+import MainHeader from "./components/Header";
 
 export function Routes() {
   return (
     <>
-      <HashRouter basename={"/"}>
+      <HashRouter basename="/">
         <ConnectionProvider>
           <WalletProvider>
             <AccountsProvider>
               <MarketProvider>
-                <AppLayout>
-                  <Switch>
-                    <Route exact path="/" component={() => <HomeView />} />
-                    <Route
-                      exact
-                      path="/search"
-                      component={() => <ReviewSearchBox />}
-                    />
-                    <Route
-                      exact
-                      path="/signup"
-                      component={() => <SignupForm />}
-                    />
-                    <Route exact path="/faucet" children={<FaucetView />} />
-                  </Switch>
-                </AppLayout>
+                <MainHeader></MainHeader>
+                <Switch>
+                  <Route exact path="/" component={() => <HomeView />} />
+                  <Route
+                    exact
+                    path="/search"
+                    component={() => <ReviewSearchBox />}
+                  />
+                  <Route
+                    exact
+                    path="/signup"
+                    component={() => <SignupForm />}
+                  />
+                  <Route exact path="/faucet" children={<FaucetView />} />
+                </Switch>
               </MarketProvider>
             </AccountsProvider>
           </WalletProvider>

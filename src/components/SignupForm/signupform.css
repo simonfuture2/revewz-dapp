@@ -1,0 +1,10 @@
+.formHeight {
+  width: 15em;
+  height: 2em;
+  flex-direction: row;
+  align-items: flex-start;
+  flex: 1;
+}
+#root::before {
+  content: unset;
+}

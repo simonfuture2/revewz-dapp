@@ -25,31 +25,6 @@ const solutions = [
     href: "#",
     icon: ChartBarIcon,
   },
-  {
-    name: "Engagement",
-    description: "Speak directly to your customers in a more meaningful way.",
-    href: "#",
-    icon: CursorClickIcon,
-  },
-  {
-    name: "Security",
-    description: "Your customers' data will be safe and secure.",
-    href: "#",
-    icon: ShieldCheckIcon,
-  },
-  {
-    name: "Integrations",
-    description: "Connect with third-party tools that you're already using.",
-    href: "#",
-    icon: ViewGridIcon,
-  },
-  {
-    name: "Automations",
-    description:
-      "Build strategic funnels that will drive your customers to convert",
-    href: "#",
-    icon: RefreshIcon,
-  },
 ];
 const callsToAction = [
   { name: "Watch Demo", href: "#", icon: PlayIcon },
@@ -82,12 +57,12 @@ function classNames(...classes: string[]) {
 
 export default function MainHeader() {
   return (
-    <div className="  w-screen">
-      <Popover className=" relative bg-white">
+    <div className="flex-none border-b-2 border-gray-100 shadow-xl w-screen bg-white">
+      <Popover className=" ">
         {({ open }) => (
           <>
             <div className="max-w-7xl mx-auto px-4 sm:px-6 ">
-              <div className="flex justify-between items-center border-b-2 border-gray-100 py-6 md:justify-start md:space-x-10">
+              <div className="flex justify-between items-center  py-6 md:justify-start md:space-x-10">
                 <div className="flex justify-start lg:w-0 lg:flex-1">
                   <a href="#">
                     <img
@@ -224,7 +199,7 @@ export default function MainHeader() {
                             static
                             className="absolute z-10 left-1/2 transform -translate-x-full mt-3 px-2 w-screen max-w-md sm:px-0 "
                           >
-                            <div className="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden">
+                            <div className="rounded-lg  max-w-full ring-1 ring-black ring-opacity-5 overflow-hidden">
                               <div className="relative grid gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8">
                                 {resources.map((item) => (
                                   <a
