@@ -9,7 +9,7 @@ import { useUserBalance, useUserTotalBalance } from "../../hooks";
 import { WRAPPED_SOL_MINT } from "../../utils/ids";
 import { formatUSD } from "../../utils/utils";
 import "./home.css";
-
+import { useHistory } from "react-router-dom";
 export const HomeView = () => {
   const { marketEmitter, midPriceInUSD } = useMarkets();
   const { tokenMap } = useConnectionConfig();
@@ -18,6 +18,7 @@ export const HomeView = () => {
   const SOL = useUserBalance(WRAPPED_SOL_MINT);
   const { balanceInUSD: totalBalanceInUSD } = useUserTotalBalance();
 
+  const history = useHistory();
   useEffect(() => {
     const refreshTotal = () => {};
 
@@ -31,6 +32,10 @@ export const HomeView = () => {
       dispose();
     };
   }, [marketEmitter, midPriceInUSD, tokenMap]);
+  function navigateToPath(e: any, path: any) {
+    e.preventDefault();
+    history.push(path);
+  }
 
   return (
     <>
@@ -67,7 +72,10 @@ export const HomeView = () => {
       <div className="mt-5 bg-gray-100  p-20 h-32 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
         <div className="rounded-md  content-evenly content-center ">
           <a
-            href="#"
+            href="/search"
+            onClick={(e) => {
+              navigateToPath(e, `/search`);
+            }}
             className="w-full shadow-md flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 md:py-4 md:text-lg md:px-10"
           >
             Get started
@@ -75,6 +83,9 @@ export const HomeView = () => {
         </div>
         <div className="mt-3 sm:mt-0 sm:ml-3">
           <a
+            onClick={(e) => {
+              navigateToPath(e, `/signup`);
+            }}
             href="/signup/"
             className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-indigo-700 shadow-md bg-indigo-100 hover:bg-indigo-200 md:py-4 md:text-lg md:px-10"
           >

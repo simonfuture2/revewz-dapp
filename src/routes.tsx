@@ -10,6 +10,7 @@ import { FaucetView, HomeView } from "./views";
 import { ReviewSearchBox } from "./components/ReviewSearchbox";
 import { SignupForm } from "./components/SignupForm";
 import MainHeader from "./components/Header";
+import { IPFSProvider } from "./contexts/ipfsContext";
 
 export function Routes() {
   return (
@@ -20,20 +21,22 @@ export function Routes() {
             <AccountsProvider>
               <MarketProvider>
                 <MainHeader></MainHeader>
-                <Switch>
-                  <Route
-                    exact
-                    path="/search"
-                    component={() => <ReviewSearchBox />}
-                  />
-                  <Route
-                    exact
-                    path="/signup"
-                    component={() => <SignupForm />}
-                  />
-                  <Route exact path="/faucet" children={<FaucetView />} />
-                  <Route exact path="/" component={() => <HomeView />} />
-                </Switch>
+                <IPFSProvider>
+                  <Switch>
+                    <Route
+                      exact
+                      path="/search"
+                      component={() => <ReviewSearchBox />}
+                    />
+                    <Route
+                      exact
+                      path="/signup"
+                      component={() => <SignupForm />}
+                    />
+                    <Route exact path="/faucet" children={<FaucetView />} />
+                    <Route exact path="/" component={() => <HomeView />} />
+                  </Switch>
+                </IPFSProvider>
               </MarketProvider>
             </AccountsProvider>
           </WalletProvider>

@@ -1,11 +1,14 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import React from "react";
 import { ReviewData } from "../../models/common";
+import IPFS from "ipfs-core";
+import CID from "cids";
 
 export default function AddReveiw() {
   const initData = new ReviewData();
   const [reviewData, setReviewData] = useState<ReviewData>(initData);
   const [errorlist, setErrorlist] = useState<string[]>([""]);
+  const [IPFS_node, setIpfsNode] = useState<any>();
 
   const loadFile = (e: any) => {
     const medialist = reviewData.product_media_list;
@@ -14,7 +17,6 @@ export default function AddReveiw() {
   };
 
   function renderListofFiles() {
-    debugger;
     let selectedfiles: any = [];
     if (
       reviewData.product_media_list &&
@@ -28,6 +30,7 @@ export default function AddReveiw() {
     return [...selectedfiles];
   }
 
+  //validate form entry
   function validate() {
     let tempErrorList = errorlist;
     if (
@@ -76,11 +79,27 @@ export default function AddReveiw() {
     }
   }
 
-  function submitReview(e: any) {
+  //node for ipfs
+  async function createNode() {
+    const IPFS_node = await IPFS.create();
+    setIpfsNode(IPFS_node);
+    return IPFS_node;
+  }
+
+  useEffect(() => {
+    createNode();
+    console.log("ipfs node created" + IPFS_node);
+  }, []);
+
+  async function submitReview(e: any) {
     e.preventDefault();
     validate();
     if (errorlist.length <= 1 && errorlist[0] === "") {
     }
+    const file: any = await IPFS_node.add(reviewData.product_media_list);
+
+    console.log("file cid is " + file.cid.toString());
+    //setReviewData(new ReviewData());
   }
 
   return (
@@ -90,7 +109,7 @@ export default function AddReveiw() {
           <div className="md:grid md:grid-cols-3 md:gap-6">
             <div className="md:col-span-1">
               <div className="px-4 sm:px-0">
-                <h3 className="text-lg font-medium leading-6 text-gray-900">
+                <h3 className="text-lg font-medium leading-6 text-indigo-900">
                   Add Review
                 </h3>
                 <p className="mt-1 text-sm text-gray-600">
@@ -100,15 +119,15 @@ export default function AddReveiw() {
                 </p>
               </div>
             </div>
-            <div className="mt-5 md:mt-0 md:col-span-2">
-              <form onSubmit={submitReview} method="POST">
+            <div className="mt-5 md:mt-0 md:col-span-2 ">
+              <form onSubmit={submitReview}>
                 <div className="shadow sm:rounded-md sm:overflow-hidden">
                   <div className="px-4 py-5 bg-white space-y-6 sm:p-6">
                     <div className="grid grid-cols-3 gap-6">
-                      <div className="col-span-6  flex flex-row sm:col-span-3">
+                      <div className="col-span-6   flex flex-row sm:col-span-3">
                         <label
                           htmlFor="product_name"
-                          className="row-auto text-l p-1  font-medium text-gray-700"
+                          className="row-auto text-l p-1  font-medium text-indigo-900"
                         >
                           Product Name
                         </label>
@@ -124,14 +143,16 @@ export default function AddReveiw() {
                             });
                           }}
                           placeholder="e.g. apple iphone 11"
-                          className="mt-1 text-l border-solid focus:ring-indigo-500 border-gray-800 focus:border-indigo-500 block w-1/2 h-1/2 shadow-sm   rounded-md"
+                          className="mt-1 text-l border-solid p-5  focus:ring-indigo-500 border-gray-800 focus:border-indigo-500 block w-1/2 h-1/2 shadow-sm   rounded-md"
                         />
-                        <label className="w-1/3 p-5 ">Scan Bar Code</label>
+                        <label className="w-1/5 p-5 text-indigo-900 ">
+                          Scan Bar Code
+                        </label>
                         <button
                           type="button"
                           name="scan_barcode"
                           id="scan_barcode"
-                          className="mt-1 p-5   block w-max shadow-sm sm:text-sm border-gray-300 bg-indigo-200 hover:border-indigo-600 ml=0 rounded-md"
+                          className=" p-5   block w-max shadow-sm sm:text-sm border-gray-300 bg-indigo-200 hover:border-indigo-600 ml=0 rounded-md"
                         >
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -160,7 +181,7 @@ export default function AddReveiw() {
                     <div>
                       <label
                         htmlFor="about"
-                        className="block text-sm font-medium text-gray-700"
+                        className="block text-m font-medium text-indigo-900"
                       >
                         Review
                       </label>
@@ -169,7 +190,7 @@ export default function AddReveiw() {
                           id="about"
                           name="about"
                           rows={3}
-                          className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border-gray-300 rounded-md"
+                          className="shadow-sm text-l p-5  focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full  border-gray-300 rounded-md"
                           placeholder="I was happy with my purchase of ..."
                           value={reviewData.product_review_message}
                           onChange={(e) => {
