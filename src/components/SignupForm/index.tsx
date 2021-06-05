@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import revewz_cycle from "./../../assets/revewz_cycle.svg";
 import "./signupform.css";
-import { UserAccountsDetails } from "../models";
+import { UserAccountsDetails } from "../../models/common/common";
 
 export const SignupForm = (props: {}) => {
   const userVal = new UserAccountsDetails();

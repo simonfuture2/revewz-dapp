@@ -21,7 +21,6 @@ export function Routes() {
               <MarketProvider>
                 <MainHeader></MainHeader>
                 <Switch>
-                  <Route exact path="/" component={() => <HomeView />} />
                   <Route
                     exact
                     path="/search"
@@ -33,6 +32,7 @@ export function Routes() {
                     component={() => <SignupForm />}
                   />
                   <Route exact path="/faucet" children={<FaucetView />} />
+                  <Route exact path="/" component={() => <HomeView />} />
                 </Switch>
               </MarketProvider>
             </AccountsProvider>

@@ -9,7 +9,7 @@ import {
   SupportIcon,
   XIcon,
 } from "@heroicons/react/outline";
-import revewz_cycle from "./../../assets/revewz_cycle.svg";
+
 import logo from "./../../assets/logo.png";
 import { ChevronDownIcon } from "@heroicons/react/solid";
 
