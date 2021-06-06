@@ -9,6 +9,7 @@ import { useWallet } from "../../contexts/wallet";
 import {
   Account,
   AccountMeta,
+  Connection,
   Keypair,
   PublicKey,
   TransactionInstruction,
@@ -21,7 +22,10 @@ export default function AddReveiw() {
   const [reviewData, setReviewData] = useState<ReviewData>(initData);
   const [errorlist, setErrorlist] = useState<string[]>([""]);
   const [IPFS_node, setIpfsNode] = useState<any>();
-  const connection = useConnection();
+  const connection = new Connection(
+    "https://devnet.solana.com/",
+    "singleGossip"
+  );
   const { publicKey, wallet, select } = useWallet();
 
   const REVEWZ_MINT_VAULT_KEY = new PublicKey(
