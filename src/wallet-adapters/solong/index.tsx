@@ -31,7 +31,7 @@ export class SolongWalletAdapter extends EventEmitter implements WalletAdapter {
         message: "Solong Error",
         description: "Please install solong wallet from Chrome ",
       });
-      return;
+      return false;
     }
 
     this._onProcess = true;

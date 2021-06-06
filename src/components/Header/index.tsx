@@ -12,6 +12,7 @@ import {
 
 import logo from "./../../assets/logo.png";
 import { ChevronDownIcon } from "@heroicons/react/solid";
+import { CurrentUserBadge } from "../CurrentUserBadge";
 
 const solutions = [
   {

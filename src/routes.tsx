@@ -11,6 +11,8 @@ import { ReviewSearchBox } from "./components/ReviewSearchbox";
 import { SignupForm } from "./components/SignupForm";
 import MainHeader from "./components/Header";
 import { IPFSProvider } from "./contexts/ipfsContext";
+import { CurrentUserBadge } from "./components/CurrentUserBadge";
+import AddReveiw from "./components/AddReview";
 
 export function Routes() {
   return (
@@ -28,6 +30,12 @@ export function Routes() {
                       path="/search"
                       component={() => <ReviewSearchBox />}
                     />
+                    <Route
+                      exact
+                      path="/review"
+                      component={() => <AddReveiw />}
+                    />
+
                     <Route
                       exact
                       path="/signup"

@@ -1,14 +1,60 @@
 import { useState, useEffect } from "react";
 import React from "react";
 import { ReviewData } from "../../models/common";
+import OnlineReview from "./../../assets/OnlineReview.gif";
 import IPFS from "ipfs-core";
 import CID from "cids";
+import { sendTransaction, useConnection } from "../../contexts/connection";
+import { useWallet } from "../../contexts/wallet";
+import {
+  Account,
+  AccountMeta,
+  Keypair,
+  PublicKey,
+  TransactionInstruction,
+  TransactionInstructionCtorFields,
+} from "@solana/web3.js";
+import { TOKEN_PROGRAM_ID, Token } from "@solana/spl-token";
 
 export default function AddReveiw() {
   const initData = new ReviewData();
   const [reviewData, setReviewData] = useState<ReviewData>(initData);
   const [errorlist, setErrorlist] = useState<string[]>([""]);
   const [IPFS_node, setIpfsNode] = useState<any>();
+  const connection = useConnection();
+  const { publicKey, wallet, select } = useWallet();
+
+  const REVEWZ_MINT_VAULT_KEY = new PublicKey(
+    `4bFqRBD6RfZSKGgE5m4GtPk9341q4Bj6gVmvkDrgkX9Q`
+  );
+  const TEST_CLIETN_aCCOOUNT = new PublicKey(
+    `ET2jBwgfh8dW6cizLp8P4VAhLfgnZxFNkQU4EBP1bePH`
+  );
+  let secret = Buffer.from("password");
+  const MULTISIGNERS = [new Account()];
+  //let REVEWZ_PAYER = Keypair.fromSecretKey(secret)
+  const REVEWZ_PAYER = new Account();
+  const SPL_TOKEN_ENGINE: Token = new Token(
+    connection,
+    REVEWZ_MINT_VAULT_KEY,
+    TOKEN_PROGRAM_ID,
+    REVEWZ_PAYER
+  );
+
+  async function sendReward() {
+    try {
+      const response = await SPL_TOKEN_ENGINE.transfer(
+        REVEWZ_MINT_VAULT_KEY,
+        TEST_CLIETN_aCCOOUNT,
+        REVEWZ_MINT_VAULT_KEY,
+        MULTISIGNERS,
+        11
+      );
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   const loadFile = (e: any) => {
     const medialist = reviewData.product_media_list;
@@ -81,11 +127,16 @@ export default function AddReveiw() {
 
   //node for ipfs
   async function createNode() {
-    const IPFS_node = await IPFS.create();
-    setIpfsNode(IPFS_node);
-    return IPFS_node;
+    try {
+      const IPFS_node = await IPFS.create({ repo: "ok" + Math.random() });
+      setIpfsNode(IPFS_node);
+      return IPFS_node;
+    } catch (error) {
+      console.log(error);
+    }
   }
 
+  //setting up IPFS NODE
   useEffect(() => {
     createNode();
     console.log("ipfs node created" + IPFS_node);
@@ -94,12 +145,21 @@ export default function AddReveiw() {
   async function submitReview(e: any) {
     e.preventDefault();
     validate();
-    if (errorlist.length <= 1 && errorlist[0] === "") {
+    //if (true)//errorlist.length <= 1 && errorlist[0] === "") {
+    try {
+      const file: any = await IPFS_node.add(reviewData.product_media_list);
+      console.log("file cid is " + file.cid.toString());
+    } catch (error) {
+      console.log(error);
     }
-    const file: any = await IPFS_node.add(reviewData.product_media_list);
 
-    console.log("file cid is " + file.cid.toString());
-    //setReviewData(new ReviewData());
+    //setReviewData(new ReviewData()); //clear text box after sending data to blockchain
+    sendReward();
+
+    /// create get associated token account
+    /// if it doesn't exist , create one
+    /// send token to new address
+    /// if exist send token to new address
   }
 
   return (
@@ -117,6 +177,11 @@ export default function AddReveiw() {
                   you share.Tell us about yoour experience with the product or
                   service
                 </p>
+                <img
+                  className="w-11/12 rounded-md m-5 shadow-md"
+                  src={OnlineReview}
+                  alt="online review "
+                ></img>
               </div>
             </div>
             <div className="mt-5 md:mt-0 md:col-span-2 ">

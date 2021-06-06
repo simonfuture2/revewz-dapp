@@ -16,7 +16,7 @@ export const CurrentUserBadge = (props: {}) => {
   // should use SOL ◎ ?
 
   return (
-    <div className="wallet-wrapper">
+    <div className="wallet-wrapper w-80 h-6 bg-black">
       <span>
         {formatNumber.format((account?.lamports || 0) / LAMPORTS_PER_SOL)} SOL
       </span>

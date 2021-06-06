@@ -19,6 +19,25 @@ fn process_instruction(
     Ok(())
 }
 
+fn get_or_create_associated_token_address(
+    funding_address: &Pubkey, 
+    wallet_address: &Pubkey,
+    spl_token_mint_address: &Pubkey,
+) -> Pubkey {
+ let mut disaddress :Pubkey = get_associated_token_address!(wallet_address,spl_token_mint_address)
+    if(disaddress)
+    return disaddress
+    else {
+        disaddress =  create_associated_token_account(funding_address,wallet_address,spl_token_mint_address)
+    }
+}
+
+
+/// create get associated token account
+/// if it doesn't exist , create one
+/// send token to new address
+/// if exist send token to new address
+
 #[cfg(test)]
 mod test {
     use {

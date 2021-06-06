@@ -3,6 +3,7 @@ export class UserAccountsDetails {
   firstName: string = "";
   lastName: string = "";
   password: string = "";
+  wallet: any = undefined;
 }
 
 export class ReviewData {
